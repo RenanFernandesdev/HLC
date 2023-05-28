@@ -35,7 +35,6 @@ namespace HLC.DriverComponents
             int retry = 0;
             while (flag && retry <= 3)
             {
-                try { 
                     Navigate(url);
                     WaitTime(3000);
                     WaitFullLoad();
@@ -45,16 +44,7 @@ namespace HLC.DriverComponents
                         AddCookieCloudflare();
                     }
                     flag = !WaitFullLoad();
-                }catch(WebDriverException)
-                {
-                    Restart();
-                    retry++;
-                }
-            }
-            if (flag)
-            {
-                throw new ApplicationException("UNAVALIABLE_PAGE");
-            }            
+            }       
         }
 
         public void AddCookieCloudflare()

@@ -1,4 +1,5 @@
-﻿using HLC.DriverComponents;
+﻿using AngleSharp.Common;
+using HLC.DriverComponents;
 using HLC.DriverComponents.Entities;
 using HLC.Util;
 using System.Linq;
@@ -26,9 +27,13 @@ namespace HLC.Process.Impl
             {
                 LabelStats = Selenium.SearchByCssSelectorAll(".stats-row  :first-child")
                                      .Select(el => el.Text)
+                                     .Concat(Selenium.SearchByCssSelectorAll(".summaryStatBreakdownRow .summaryStatBreakdownSubHeader")
+                                                     .Select(elm => elm.Text))
                                      .ToArray();
                 Stats = Selenium.SearchByCssSelectorAll(".stats-row :nth-child(2)")
                                 .Select(el => el.Text)
+                                .Concat(Selenium.SearchByCssSelectorAll(".summaryStatBreakdownRow .summaryStatBreakdownDataValue")
+                                                     .Select(elm => elm.Text))
                                 .ToArray();
                 PlayerName = Selenium.GetTextFromDOM(".summaryNickname.text-ellipsis");
             }

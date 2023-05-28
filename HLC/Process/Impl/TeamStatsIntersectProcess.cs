@@ -72,12 +72,17 @@ namespace HLC.Process.Impl
 
             try
             {
+                string threeMonthAgo = DateTime.Now.AddMonths(-3).ToString("yyyy-MM-dd");
+                string today = DateTime.Now.ToString("yyyy-MM-dd");
+
                 IEnumerable<object> aur = (IEnumerable<object>)resultJs;
                 List<string[]> resultsX = aur.Select(obj =>
                 {
                     string[] splitted = obj.ToString().Substring(1).Split('/');
-                    string[] allow = { $"https://www.hltv.org/{splitted[0]}/{splitted[1]}/{splitted[splitted.Length - 4]}/{splitted[splitted.Length - 3]}",
-                                   $"https://www.hltv.org/{splitted[0]}/{splitted[1]}/{splitted[splitted.Length - 2]}/{splitted[splitted.Length - 1]}"};
+                    string[] allow = { 
+                        $"https://www.hltv.org/{splitted[0]}/{splitted[1]}/{splitted[splitted.Length - 4]}/{splitted[splitted.Length - 3]}?startDate={threeMonthAgo}&endDate={today}",
+                        $"https://www.hltv.org/{splitted[0]}/{splitted[1]}/{splitted[splitted.Length - 2]}/{splitted[splitted.Length - 1]}?startDate={threeMonthAgo}&endDate={today}"
+                    };
                     return allow;
                 }).ToList();
 
