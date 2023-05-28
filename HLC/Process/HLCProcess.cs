@@ -2,7 +2,7 @@
 using HLC.DriverComponents.Entities;
 using System;
 
-namespace HLC.Services
+namespace HLC.Process
 {
     internal abstract class HLCProcess
     {

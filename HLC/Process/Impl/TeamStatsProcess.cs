@@ -1,11 +1,10 @@
 ﻿using HLC.DriverComponents;
 using HLC.DriverComponents.Entities;
-using HLC.Services.DataModel;
-using System;
+using HLC.Util;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace HLC.Services.Impl
+namespace HLC.Process.Impl
 {
     internal class TeamStatsProcess : HLCProcess
     {

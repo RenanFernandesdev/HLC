@@ -1,12 +1,12 @@
 ﻿using HLC.DriverComponents.Entities;
 using System.Collections.Generic;
-using HLC.Services.DataModel;
 using OpenQA.Selenium;
 using System.Linq;
 using System;
 using HLC.DriverComponents;
+using HLC.Util;
 
-namespace HLC.Services.Impl
+namespace HLC.Process.Impl
 {
     internal class MatchesDailyProcess : HLCProcess
     {

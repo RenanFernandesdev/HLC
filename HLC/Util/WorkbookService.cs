@@ -1,8 +1,7 @@
-﻿using HLC.Util;
-using System;
+﻿using System;
 using ClosedXML.Excel;
 
-namespace HLC.Services.DataModel
+namespace HLC.Util
 {
     internal class WorkbookService : IDisposable
     {

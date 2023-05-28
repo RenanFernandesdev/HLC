@@ -4,7 +4,7 @@ using System.Linq;
 using System;
 using HLC.DriverComponents;
 
-namespace HLC.Services.Impl
+namespace HLC.Process.Impl
 {
     internal class TeamStatsIntersectProcess : HLCProcess
     {
@@ -58,7 +58,6 @@ namespace HLC.Services.Impl
             Selenium.TearDown();
             CurrentNode.SetNode(ProcessName, true, Stats);
         }
-
 
         private List<string[]> DeserializeLocally()
         {

@@ -1,13 +1,6 @@
 ﻿using HLC.Services;
 using HLC.Services.Impl;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HLC
@@ -21,9 +14,26 @@ namespace HLC
 
         private void button1_Click(object sender, EventArgs e)
         {
-            HLCService process = new HLCService();
-            process.Requester();
-            MessageBox.Show("Success!");
+            HLCService process;
+            string url = textBox1.Text;
+
+            try
+            {
+                if (string.IsNullOrEmpty(url))
+                {
+                    process = new DailyService();
+                }
+                else
+                {
+                    process = new MatchStandaloneService(url);
+                }
+                process.Requester();
+                MessageBox.Show("Success!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ocorreu um erro, tente novamente.\n Erro: {ex.Message}");
+            }
         }
     }
 }
