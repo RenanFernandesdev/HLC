@@ -28,12 +28,12 @@ namespace HLC.Process.Impl
                 LabelStats = Selenium.SearchByCssSelectorAll(".stats-row  :first-child")
                                      .Select(el => el.Text)
                                      .Concat(Selenium.SearchByCssSelectorAll(".summaryStatBreakdownRow .summaryStatBreakdownSubHeader")
-                                                     .Select(elm => elm.Text))
+                                     .Select(elm => elm.Text))
                                      .ToArray();
                 Stats = Selenium.SearchByCssSelectorAll(".stats-row :nth-child(2)")
-                                .Select(el => el.Text)
+                                .Select(el => FormatData.FormatTd(el.Text))
                                 .Concat(Selenium.SearchByCssSelectorAll(".summaryStatBreakdownRow .summaryStatBreakdownDataValue")
-                                                     .Select(elm => elm.Text))
+                                .Select(elm => FormatData.FormatTd(elm.Text)))
                                 .ToArray();
                 PlayerName = Selenium.GetTextFromDOM(".summaryNickname.text-ellipsis");
             }

@@ -1,6 +1,8 @@
-﻿using HLC.Services;
+﻿using HLC.Properties;
+using HLC.Services;
 using HLC.Services.Impl;
 using System;
+using System.Media;
 using System.Windows.Forms;
 
 namespace HLC
@@ -28,6 +30,9 @@ namespace HLC
                     process = new MatchStandaloneService(url);
                 }
                 process.Requester();
+                SoundPlayer simpleSound = new SoundPlayer(Resources.ring);
+                
+                simpleSound.Play();
                 MessageBox.Show("Success!");
             }
             catch (Exception ex)

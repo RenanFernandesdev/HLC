@@ -7,7 +7,7 @@ namespace HLC.Util
     {
         private XLWorkbook CurrentWorkbook;
         private IXLWorksheet CurrentWorksheet;
-        private string WorkbookName = $"HL STATISCS - {DateTime.Now.ToString("ddMMyyyyHHmmss")}.xlsx";
+        private string WorkbookName;
         private string DirectoryOut;
 
         public string[] ColumnLabels;
@@ -17,6 +17,7 @@ namespace HLC.Util
         public WorkbookService()
         {
             DirectoryOut = DirectoryUtilities.GetInstance.CreateDirectory();
+            SetWorkbookName("HL STATISCS");
         }
 
         public WorkbookService(string pathSaved)
@@ -32,6 +33,12 @@ namespace HLC.Util
 
             CurrentWorkbook.SaveAs(path);
             return path;
+        }
+
+        public string SetWorkbookName(string workbookName)
+        {
+            WorkbookName = $"{workbookName} - {DateTime.Now.ToString("ddMMyyyyHHmmss")}.xlsx";
+            return WorkbookName;
         }
 
         public void CreateWorksheet(string tabName)

@@ -34,7 +34,7 @@ namespace HLC.Process.Impl
                                                                                                         .ToArray();
                 DataGrid = Selenium.SearchByCssSelectorAll(".two-grid .col .stats-rows.standard-box")
                                                     .Select(el => Selenium.SearchByCssSelectorAll(".stats-row :nth-child(2)", el)
-                                                    .Select(elm => elm.Text).ToArray()).ToList();
+                                                    .Select(elm => FormatData.FormatTd(elm.Text)).ToArray()).ToList();
                 Data.Add(mapNames);
                 Data.Add(labelStat);
                 GetMapsStats();
@@ -72,7 +72,7 @@ namespace HLC.Process.Impl
                 }
 
                 string[] fields = Selenium.SearchByCssSelectorAll(".stats-rows.standard-box .stats-row :nth-child(2)")
-                                          .Select(el => el.Text).ToArray();
+                                          .Select(el => FormatData.FormatTd(el.Text)).ToArray();
 
                 GridMapStat[mapBundle[0]] = fields;
             }

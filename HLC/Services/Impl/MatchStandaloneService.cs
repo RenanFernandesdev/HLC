@@ -21,7 +21,8 @@ namespace HLC.Services.Impl
 
         public void Requester()
         {
-            ComponentNode aggregateNode = InitialComponent();
+            ComponentNode aggregateNode = new ComponentNode();
+            aggregateNode.Data["URL_MATCH"] = UrlMatch;
 
             AssignNode(new TeamStatsIntersectProcess(aggregateNode, SeleniumBase).EstablishRoutine());
             ComponentNode lastNode = Nodes.LastOrDefault();
@@ -33,6 +34,9 @@ namespace HLC.Services.Impl
                 List<string[]> teamPack = (List<string[]>)aggregateNode.Data["TEAMS_LIST"];
                 string[] teamNames = teamPack.Select(team => team[0]).ToArray();
                 string[] urlTeams = teamPack.Select(url => url[1]).ToArray();
+
+                string workbookPath = GetWorkbookPath($"{teamNames[0]} vs {teamNames[1]}");
+                aggregateNode.Data.Add("WORKBOOK_PATH", workbookPath);
 
                 List<string[]> hrefsPlayers = (List<string[]>)aggregateNode.Data["PLAYERS_LIST"];
 
@@ -67,16 +71,11 @@ namespace HLC.Services.Impl
             Nodes.Add(external);
         }
 
-        private ComponentNode InitialComponent()
+        private string GetWorkbookPath(string workbookName)
         {
-            ComponentNode node = new ComponentNode();
             WorkbookService wb = new WorkbookService();
-            string wbPath = wb.CreateWorkbook("STANDALONE_MATCH");
-
-            node.Data["URL_MATCH"] = UrlMatch;
-            node.Data.Add("WORKBOOK_PATH", wbPath);
-
-            return node;
+            wb.SetWorkbookName(workbookName);
+            return wb.CreateWorkbook("STANDALONE_MATCH");
         }
     }
 }
