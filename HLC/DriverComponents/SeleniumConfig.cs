@@ -30,6 +30,7 @@ namespace HLC.DriverComponents
             List<string> argList = new List<string>
             {
                 "no-sandbox",
+                "--window-size=400,360",
                 "disable-javascript",
                 "disable-infobars",
                 "disable-extensions",
@@ -41,7 +42,7 @@ namespace HLC.DriverComponents
 
             };
             driverOptions.AddArguments(argList);
-
+            
             return driverOptions;
         }
     }
